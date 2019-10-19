@@ -12,8 +12,8 @@ import core.Calculator;
 import core.event.NumberButtonActionListener;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * DESC〈一句话功能简述〉<br>
@@ -59,28 +59,44 @@ public class MainWindow {
      */
     private void init() {
         calculator = new Calculator();
-        btn0.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn1.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn2.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn3.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn4.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn5.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn6.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn7.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn8.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btn9.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnZF.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnPoint.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnBack.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnC.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnCE.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnAdd.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnSubtract.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnMultiply.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnDivide.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
-        btnResult.addActionListener(new NumberButtonActionListener(labResult,labLog, calculator));
+        NumberButtonActionListener listener = new NumberButtonActionListener(labResult, labLog, calculator);
+        btn0.addActionListener(listener);
+        btn1.addActionListener(listener);
+        btn2.addActionListener(listener);
+        btn3.addActionListener(listener);
+        btn4.addActionListener(listener);
+        btn5.addActionListener(listener);
+        btn6.addActionListener(listener);
+        btn7.addActionListener(listener);
+        btn8.addActionListener(listener);
+        btn9.addActionListener(listener);
+        btnZF.addActionListener(listener);
+        btnPoint.addActionListener(listener);
+        btnBack.addActionListener(listener);
+        btnC.addActionListener(listener);
+        btnCE.addActionListener(listener);
+        btnAdd.addActionListener(listener);
+        btnSubtract.addActionListener(listener);
+        btnMultiply.addActionListener(listener);
+        btnDivide.addActionListener(listener);
+        btnResult.addActionListener(listener);
+        mainJpanel.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent focusEvent) {
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent focusEvent) {
+                mainJpanel.requestFocus(true);
+            }
+        });
+        mainJpanel.addKeyListener(listener);
+        mainJpanel.setFocusable(true);
+
 
     }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("计算器");
         frame.setContentPane(new MainWindow().mainJpanel);
