@@ -1,6 +1,8 @@
 # calculator
 A simple arithmetic device,简单四则运算计算器
 
+java gui 模仿win10基础 计算器
+
 功能列表：
 > * 加减乘除运算
 > * 键盘输入支持
